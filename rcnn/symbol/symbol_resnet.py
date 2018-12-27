@@ -46,11 +46,11 @@ def residual_unit_dcn_v1(data, num_filter, stride, dim_match, name):
                                no_bias=True, workspace=workspace, name=name + '_conv2')
     '''
     conv2_offset = mx.symbol.Convolution(name=name + '_conv2_offset', data = act2,
-                                                    num_filter=72, pad=(2, 2), kernel=(3, 3), stride=(1, 1), dilate=(2, 2), cudnn_off=True)
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1), dilate=(1, 1), cudnn_off=True)
     conv2 = mx.contrib.symbol.DeformableConvolution(name=name + '_conv2', data=act2, offset=conv2_offset,
-                                                                num_filter=int(num_filter * 0.25), pad=(2, 2), kernel=(3, 3),
+                                                                num_filter=int(num_filter * 0.25), pad=(1, 1), kernel=(3, 3),
                                                                 num_deformable_group=4,
-                                                                stride=stride, dilate=(2, 2), no_bias=True)    
+                                                                stride=stride, dilate=(1, 1), no_bias=True)    
      
     bn3 = mx.sym.BatchNorm(data=conv2, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn3')
     act3 = mx.sym.Activation(data=bn3, act_type='relu', name=name + '_relu3')
@@ -161,7 +161,7 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
 
     # Fast R-CNN
     if config.USE_ROI_ALIGN:
-        if not config.DCN_V1:
+        if config.DCN_V1:
             offset_t = mx.contrib.sym.DeformablePSROIPooling(name='offset_t', 
                                                             data=conv_feat, 
                                                             rois=rois, 
