@@ -166,23 +166,23 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
                                                             data=conv_feat, 
                                                             rois=rois, 
                                                             group_size=1, 
-                                                            pooled_size=7,
+                                                            pooled_size=14,
                                                             sample_per_part=4, 
                                                             no_trans=True, 
-                                                            part_size=7, 
+                                                            part_size=14, 
                                                             output_dim=256, 
                                                             spatial_scale=1.0 / config.RCNN_FEAT_STRIDE)
-            offset = mx.sym.FullyConnected(name='offset', data=offset_t, num_hidden=7 * 7 * 2, lr_mult=0.01)
-            offset_reshape = mx.sym.Reshape(data=offset, shape=(-1, 2, 7, 7), name='offset_reshape')
+            offset = mx.sym.FullyConnected(name='offset', data=offset_t, num_hidden=14 * 14 * 2, lr_mult=0.01)
+            offset_reshape = mx.sym.Reshape(data=offset, shape=(-1, 2, 14, 14), name='offset_reshape')
             roi_pool = mx.contrib.sym.DeformablePSROIPooling(name='roi_pool5', 
                                                                         data=conv_feat, 
                                                                         rois=rois, 
                                                                         trans=offset_reshape, 
                                                                         group_size=1, 
-                                                                        pooled_size=7, 
+                                                                        pooled_size=14, 
                                                                         sample_per_part=4,
                                                                         no_trans=False, 
-                                                                        part_size=7, 
+                                                                        part_size=14, 
                                                                         output_dim=256, 
                                                                         spatial_scale=1.0 / config.RCNN_FEAT_STRIDE, 
                                                                         trans_std=0.1)
