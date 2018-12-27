@@ -161,7 +161,7 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
 
     # Fast R-CNN
     if config.USE_ROI_ALIGN:
-        if config.DCN_V1:
+        if not config.DCN_V1:
             offset_t = mx.contrib.sym.DeformablePSROIPooling(name='offset_t', 
                                                             data=conv_feat, 
                                                             rois=rois, 
@@ -193,7 +193,7 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
         roi_pool = mx.symbol.ROIPooling(
             name='roi_pool5', data=conv_feat, rois=rois, pooled_size=(14, 14), spatial_scale=1.0 / config.RCNN_FEAT_STRIDE)
     # res5
-    unit = residual_unit_dcn_v1(data=roi_pool, num_filter=filter_list[3], stride=(1, 1), dim_match=False, name='stage4_unit1')
+    unit = residual_unit_dcn_v1(data=roi_pool, num_filter=filter_list[3], stride=(2, 2), dim_match=False, name='stage4_unit1')
     for i in range(2, units[3] + 1):
         if config.DCN_V1:
             unit = residual_unit_dcn_v1(data=unit, num_filter=filter_list[3], stride=(1, 1), dim_match=True, name='stage4_unit%s' % i)
