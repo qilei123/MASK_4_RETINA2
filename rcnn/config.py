@@ -153,12 +153,12 @@ dataset = edict()
 dataset.PascalVOC = edict()
 
 dataset.coco = edict()
-dataset.coco.dataset = 'coco'
+dataset.coco.dataset = 'retina'
 dataset.coco.image_set = 'train2014'
 dataset.coco.test_image_set = 'val2014'
-dataset.coco.root_path = '../data'
-dataset.coco.dataset_path = '../data/coco'
-dataset.coco.NUM_CLASSES = 81
+dataset.coco.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+dataset.coco.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+dataset.coco.NUM_CLASSES = 11
 dataset.coco.NUM_IMAGES_USING = -1
 
 
