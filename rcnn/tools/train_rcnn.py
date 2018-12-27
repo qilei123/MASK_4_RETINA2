@@ -19,7 +19,7 @@ def train_rcnn(network, dataset, image_set, root_path, dataset_path,
                train_shared, lr, lr_step, proposal):
     # set up config
     config.TRAIN.BATCH_IMAGES = 2
-    config.TRAIN.BATCH_ROIS = 128
+    #config.TRAIN.BATCH_ROIS = 128
     if proposal == 'ss':
         config.TRAIN.BG_THRESH_LO = 0.1  # reproduce Fast R-CNN
 
