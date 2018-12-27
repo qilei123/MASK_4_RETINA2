@@ -162,7 +162,7 @@ dataset.retina.test_image_set = 'val2014'
 dataset.retina.NUM_IMAGES_USING = -1
 config.DCN_V1 = False
 experiments = ['dr_baseline','rop_baseline','dr_dcn_v1','rop_dcn_v1']
-experiment_name = experiments[2]
+experiment_name = experiments[3]
 if experiment_name =='dr_baseline':   
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline'
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
