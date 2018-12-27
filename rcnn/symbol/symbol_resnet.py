@@ -46,9 +46,9 @@ def residual_unit_dcn_v1(data, num_filter, stride, dim_match, name):
                                no_bias=True, workspace=workspace, name=name + '_conv2')
     '''
     conv2_offset = mx.symbol.Convolution(name=name + '_conv2_offset', data = act2,
-                                                    num_filter=72, pad=(1, 1), kernel=(3, 3), stride=stride, dilate=(2, 2), cudnn_off=True)
+                                                    num_filter=72, pad=(2, 2), kernel=(3, 3), stride=stride, dilate=(2, 2), cudnn_off=True)
     conv2 = mx.contrib.symbol.DeformableConvolution(name=name + '_conv2', data=act2, offset=conv2_offset,
-                                                                num_filter=int(num_filter * 0.25), pad=(1, 1), kernel=(3, 3),
+                                                                num_filter=int(num_filter * 0.25), pad=(2, 2), kernel=(3, 3),
                                                                 num_deformable_group=4,
                                                                 stride=stride, dilate=(2, 2), no_bias=True)    
      
