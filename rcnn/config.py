@@ -188,6 +188,7 @@ elif experiment_name =='rop_dcn_v1':
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
     dataset.retina.NUM_CLASSES = 12
 
+default.e2e_prefix = dataset.retina.root_path+'/e2e'
 
 def generate_config(_network, _dataset):
     for k, v in network[_network].items():
