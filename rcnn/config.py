@@ -161,7 +161,8 @@ dataset.retina.image_set = 'train2014'
 dataset.retina.test_image_set = 'val2014'
 dataset.retina.NUM_IMAGES_USING = -1
 config.DCN_V1 = False
-experiment_name = 'rop_baseline'
+experiments = ['dr_baseline','rop_baseline','dr_dcn_v1','rop_dcn_v1']
+experiment_name = experiments[2]
 if experiment_name =='dr_baseline':   
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline'
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
@@ -177,6 +178,13 @@ elif experiment_name =='dr_dcn_v1':
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_dcn_v1'
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
     dataset.retina.NUM_CLASSES = 11
+elif experiment_name =='rop_dcn_v1':
+    config.DCN_V1 = True
+    config.ANCHOR_SCALES = (8, 16, 32, 64, 128, 256)
+    config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)    
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO/maskrcnn_dcn_v1'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
+    dataset.retina.NUM_CLASSES = 12
 
 
 def generate_config(_network, _dataset):
