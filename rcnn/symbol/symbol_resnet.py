@@ -41,7 +41,7 @@ def residual_unit_dcn_v1(data, num_filter, stride, dim_match, name):
                                no_bias=True, workspace=workspace, name=name + '_conv1')
     bn2 = mx.sym.BatchNorm(data=conv1, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn2')
     act2 = mx.sym.Activation(data=bn2, act_type='relu', name=name + '_relu2')
-    '''
+    
     conv2 = mx.sym.Convolution(data=act2, num_filter=int(num_filter * 0.25), kernel=(3, 3), stride=stride, pad=(1, 1),
                                no_bias=True, workspace=workspace, name=name + '_conv2')
     '''
@@ -51,7 +51,7 @@ def residual_unit_dcn_v1(data, num_filter, stride, dim_match, name):
                                                                 num_filter=int(num_filter * 0.25), pad=(1, 1), kernel=(3, 3),
                                                                 num_deformable_group=4,
                                                                 stride=stride, dilate=(1, 1), no_bias=True)    
-     
+    ''' 
     bn3 = mx.sym.BatchNorm(data=conv2, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn3')
     act3 = mx.sym.Activation(data=bn3, act_type='relu', name=name + '_relu3')
     conv3 = mx.sym.Convolution(data=act3, num_filter=num_filter, kernel=(1, 1), stride=(1, 1), pad=(0, 0), no_bias=True,
