@@ -165,11 +165,11 @@ experiment_name = 'dr_baseline'
 if experiment_name =='dr_baseline':
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline'
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
-    dataset.retina.NUM_CLASSES = 10
+    dataset.retina.NUM_CLASSES = 11
 elif experiment_name =='rop_baseline':
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO/maskrcnn_baseline'
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
-    dataset.retina.NUM_CLASSES = 11    
+    dataset.retina.NUM_CLASSES = 12    
 
 
 def generate_config(_network, _dataset):
