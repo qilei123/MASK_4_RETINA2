@@ -172,8 +172,8 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
                                                             part_size=14, 
                                                             output_dim=1024, 
                                                             spatial_scale=1.0 / config.RCNN_FEAT_STRIDE)
-            offset = mx.sym.FullyConnected(name='offset', data=offset_t, num_hidden=7 * 7 * 2, lr_mult=0.01)
-            offset_reshape = mx.sym.Reshape(data=offset, shape=(-1, 2, 7, 7), name='offset_reshape')
+            offset = mx.sym.FullyConnected(name='offset', data=offset_t, num_hidden=14 * 14 * 2, lr_mult=0.01)
+            offset_reshape = mx.sym.Reshape(data=offset, shape=(-1, 2, 14, 14), name='offset_reshape')
             roi_pool = mx.contrib.sym.DeformablePSROIPooling(name='roi_pool5', 
                                                                         data=conv_feat, 
                                                                         rois=rois, 
