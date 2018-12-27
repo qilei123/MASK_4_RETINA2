@@ -110,7 +110,7 @@ class retina(IMDB):
                                             for cls in self.classes[1:]])
 
         # load image file names
-        self.image_set_index = self._load_image_set_index()[:dataset.coco.NUM_IMAGES_USING]
+        self.image_set_index = self._load_image_set_index()[:dataset.retina.NUM_IMAGES_USING]
         self.num_images = len(self.image_set_index)
         logger.info('%s num_images %d' % (self.name, self.num_images))
         self.mask_size = mask_size
