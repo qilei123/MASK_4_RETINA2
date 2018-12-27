@@ -111,8 +111,8 @@ default.base_lr = 0.001
 default.dataset = 'retina'
 default.image_set = 'train2014'
 default.test_image_set = 'val2014'
-default.root_path = '../data'
-default.dataset_path = '../data/coco'
+default.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn'
+default.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
 # default training
 default.frequent = 20
 default.kvstore = 'device'
@@ -152,14 +152,14 @@ dataset = edict()
 
 dataset.PascalVOC = edict()
 
-dataset.coco = edict()
-dataset.coco.dataset = 'retina'
-dataset.coco.image_set = 'train2014'
-dataset.coco.test_image_set = 'val2014'
-dataset.coco.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn'
-dataset.coco.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
-dataset.coco.NUM_CLASSES = 11
-dataset.coco.NUM_IMAGES_USING = -1
+dataset.retina = edict()
+dataset.retina.dataset = 'retina'
+dataset.retina.image_set = 'train2014'
+dataset.retina.test_image_set = 'val2014'
+dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn'
+dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+dataset.retina.NUM_CLASSES = 11
+dataset.retina.NUM_IMAGES_USING = -1
 
 
 def generate_config(_network, _dataset):
