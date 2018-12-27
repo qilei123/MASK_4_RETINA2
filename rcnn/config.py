@@ -15,7 +15,7 @@ config.USE_ROI_ALIGN = False
 # dataset related params
 config.NUM_CLASSES = 81
 config.SCALES = [(600, 1000)]  # first is scale (the shorter side); second is max size
-config.ANCHOR_SCALES = (16, 32, 64, 128, 256)
+config.ANCHOR_SCALES = (8, 16, 32, 64, 128, 256)
 config.ANCHOR_RATIOS = (0.5, 1, 2)
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)
 config.MASK_SIZE = 14
@@ -156,7 +156,7 @@ dataset.coco = edict()
 dataset.coco.dataset = 'retina'
 dataset.coco.image_set = 'train2014'
 dataset.coco.test_image_set = 'val2014'
-dataset.coco.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+dataset.coco.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn'
 dataset.coco.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
 dataset.coco.NUM_CLASSES = 11
 dataset.coco.NUM_IMAGES_USING = -1
