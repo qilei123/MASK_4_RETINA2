@@ -34,6 +34,35 @@ def residual_unit(data, num_filter, stride, dim_match, name):
     return sum
 
 
+def residual_unit_dcn_v1(data, num_filter, stride, dim_match, name):
+    bn1 = mx.sym.BatchNorm(data=data, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn1')
+    act1 = mx.sym.Activation(data=bn1, act_type='relu', name=name + '_relu1')
+    conv1 = mx.sym.Convolution(data=act1, num_filter=int(num_filter * 0.25), kernel=(1, 1), stride=(1, 1), pad=(0, 0),
+                               no_bias=True, workspace=workspace, name=name + '_conv1')
+    bn2 = mx.sym.BatchNorm(data=conv1, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn2')
+    act2 = mx.sym.Activation(data=bn2, act_type='relu', name=name + '_relu2')
+    '''
+    conv2 = mx.sym.Convolution(data=act2, num_filter=int(num_filter * 0.25), kernel=(3, 3), stride=stride, pad=(1, 1),
+                               no_bias=True, workspace=workspace, name=name + '_conv2')
+    '''
+    conv2_offset = mx.symbol.Convolution(name=name + '_conv2_offset', data = act2,
+                                                    num_filter=72, pad=(2, 2), kernel=(3, 3), stride=(1, 1), dilate=(2, 2), cudnn_off=True)
+    conv2 = mx.contrib.symbol.DeformableConvolution(name=name + '_conv2', data=act2, offset=conv2_offset,
+                                                                num_filter=int(num_filter * 0.25), pad=(2, 2), kernel=(3, 3),
+                                                                stride=stride, dilate=(2, 2), no_bias=True)    
+     
+    bn3 = mx.sym.BatchNorm(data=conv2, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn3')
+    act3 = mx.sym.Activation(data=bn3, act_type='relu', name=name + '_relu3')
+    conv3 = mx.sym.Convolution(data=act3, num_filter=num_filter, kernel=(1, 1), stride=(1, 1), pad=(0, 0), no_bias=True,
+                               workspace=workspace, name=name + '_conv3')
+    if dim_match:
+        shortcut = data
+    else:
+        shortcut = mx.sym.Convolution(data=act1, num_filter=num_filter, kernel=(1, 1), stride=stride, no_bias=True,
+                                      workspace=workspace, name=name + '_sc')
+    sum = mx.sym.ElementWiseSum(*[conv3, shortcut], name=name + '_plus')
+    return sum
+
 def get_resnet_conv(data):
     # res1
     data_bn = mx.sym.BatchNorm(data=data, fix_gamma=True, eps=eps, use_global_stats=use_global_stats, name='bn_data')
@@ -139,7 +168,10 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
     # res5
     unit = residual_unit(data=roi_pool, num_filter=filter_list[3], stride=(2, 2), dim_match=False, name='stage4_unit1')
     for i in range(2, units[3] + 1):
-        unit = residual_unit(data=unit, num_filter=filter_list[3], stride=(1, 1), dim_match=True, name='stage4_unit%s' % i)
+        if config.VCN_V1:
+            unit = residual_unit_dcn_v1(data=unit, num_filter=filter_list[3], stride=(1, 1), dim_match=True, name='stage4_unit%s' % i)
+        else:
+            unit = residual_unit(data=unit, num_filter=filter_list[3], stride=(1, 1), dim_match=True, name='stage4_unit%s' % i)
     bn1 = mx.sym.BatchNorm(data=unit, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name='bn1')
     relu1 = mx.sym.Activation(data=bn1, act_type='relu', name='relu1')
     pool1 = mx.symbol.Pooling(data=relu1, global_pool=True, kernel=(7, 7), pool_type='avg', name='pool1')
