@@ -161,7 +161,7 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
 
     # Fast R-CNN
     if config.USE_ROI_ALIGN:
-        if config.DCN_V1:
+        if not config.DCN_V1:
             offset_t = mx.contrib.sym.DeformablePSROIPooling(name='offset_t', 
                                                             data=conv_feat, 
                                                             rois=rois, 
