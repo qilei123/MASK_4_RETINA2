@@ -108,7 +108,7 @@ default.pretrained = 'model/resnet-101'
 default.pretrained_epoch = 0
 default.base_lr = 0.001
 # default dataset
-default.dataset = 'coco'
+default.dataset = 'retina'
 default.image_set = 'train2014'
 default.test_image_set = 'val2014'
 default.root_path = '../data'
