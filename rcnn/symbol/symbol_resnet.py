@@ -161,13 +161,13 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
 
     # Fast R-CNN
     if config.USE_ROI_ALIGN:
-        if not config.DCN_V1:
+        if config.DCN_V1:
             offset_t = mx.contrib.sym.DeformablePSROIPooling(name='offset_t', 
                                                             data=conv_feat, 
                                                             rois=rois, 
                                                             group_size=1, 
                                                             pooled_size=14,
-                                                            sample_per_part=1, 
+                                                            sample_per_part=4, 
                                                             no_trans=True, 
                                                             part_size=14, 
                                                             output_dim=256, 
@@ -180,10 +180,10 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
                                                                         trans=offset_reshape, 
                                                                         group_size=1, 
                                                                         pooled_size=14, 
-                                                                        sample_per_part=1,
+                                                                        sample_per_part=4,
                                                                         no_trans=False, 
                                                                         part_size=14, 
-                                                                        output_dim=256, 
+                                                                        output_dim=1024, 
                                                                         spatial_scale=1.0 / config.RCNN_FEAT_STRIDE, 
                                                                         trans_std=0.1)
         else:
