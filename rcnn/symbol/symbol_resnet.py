@@ -131,7 +131,7 @@ def get_resnet_train(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCH
 
     # Fast R-CNN
     if config.USE_ROI_ALIGN:
-        roi_pool = mx.symbol.ROIAlign(
+        roi_pool = mx.contrib.symbol.ROIAlign(
             name='roi_pool5', data=conv_feat, rois=rois, pooled_size=(14, 14), spatial_scale=1.0 / config.RCNN_FEAT_STRIDE)      # rois*1024*masksize*masksize
     else:
         roi_pool = mx.symbol.ROIPooling(
