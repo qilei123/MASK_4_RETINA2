@@ -96,7 +96,8 @@ def train_net(args, ctx, pretrained, epoch, prefix, begin_epoch, end_epoch,
         arg_params['mask_pred1_weight'] = mx.random.normal(0, 0.01, shape=arg_shape_dict['mask_pred1_weight'])
         arg_params['mask_pred2_weight'] = mx.random.normal(0, 0.01, shape=arg_shape_dict['mask_pred2_weight'])
         arg_params['mask_pred2_bias'] = mx.nd.zeros(shape=arg_shape_dict['mask_pred2_bias'])
-
+        arg_params['offset_weight'] = mx.nd.zeros(shape=self.arg_shape_dict['offset_weight'])
+        arg_params['offset_bias'] = mx.nd.zeros(shape=self.arg_shape_dict['offset_bias'])
     # check parameter shapes
     for k in sym.list_arguments():
         if k in data_shape_dict:
