@@ -10,7 +10,7 @@ config.RPN_FEAT_STRIDE = 16
 config.RCNN_FEAT_STRIDE = 16
 config.FIXED_PARAMS = ['conv1', 'conv2']
 config.FIXED_PARAMS_SHARED = ['conv1', 'conv2', 'conv3', 'conv4', 'conv5']
-config.USE_ROI_ALIGN = False
+config.USE_ROI_ALIGN = True
 
 # dataset related params
 config.NUM_CLASSES = 11
@@ -27,7 +27,7 @@ config.TRAIN = edict()
 # size of images for each device, 2 for rcnn, 1 for rpn and e2e
 config.TRAIN.BATCH_IMAGES = 2
 # e2e changes behavior of anchor loader and metric
-config.TRAIN.END2END = False
+config.TRAIN.END2END = True
 # group images with similar aspect ratio
 config.TRAIN.ASPECT_GROUPING = True
 
@@ -153,13 +153,23 @@ dataset = edict()
 dataset.PascalVOC = edict()
 
 dataset.retina = edict()
+
+
+
 dataset.retina.dataset = 'retina'
 dataset.retina.image_set = 'train2014'
 dataset.retina.test_image_set = 'val2014'
-dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn'
-dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
-dataset.retina.NUM_CLASSES = 11
 dataset.retina.NUM_IMAGES_USING = -1
+
+experiment_name = 'dr_baseline'
+if experiment_name =='dr_baseline':
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+    dataset.retina.NUM_CLASSES = 10
+elif experiment_name =='rop_baseline':
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO/maskrcnn_baseline'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
+    dataset.retina.NUM_CLASSES = 11    
 
 
 def generate_config(_network, _dataset):
