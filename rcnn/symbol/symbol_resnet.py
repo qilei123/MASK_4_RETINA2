@@ -49,7 +49,7 @@ def residual_unit_dcn_v1(data, num_filter, stride, dim_match, name):
                                                     num_filter=72, pad=(2, 2), kernel=(3, 3), stride=(1, 1), dilate=(2, 2), cudnn_off=True)
     conv2 = mx.contrib.symbol.DeformableConvolution(name=name + '_conv2', data=act2, offset=conv2_offset,
                                                                 num_filter=int(num_filter * 0.25), pad=(2, 2), kernel=(3, 3),
-                                                                num_deformable_group=4,
+                                                                num_deformable_group=1,
                                                                 stride=stride, dilate=(2, 2), no_bias=True)    
      
     bn3 = mx.sym.BatchNorm(data=conv2, fix_gamma=False, eps=eps, use_global_stats=use_global_stats, name=name + '_bn3')
