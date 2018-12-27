@@ -13,9 +13,9 @@ config.FIXED_PARAMS_SHARED = ['conv1', 'conv2', 'conv3', 'conv4', 'conv5']
 config.USE_ROI_ALIGN = False
 
 # dataset related params
-config.NUM_CLASSES = 81
+config.NUM_CLASSES = 11
 config.SCALES = [(600, 1000)]  # first is scale (the shorter side); second is max size
-config.ANCHOR_SCALES = (8, 16, 32, 64, 128, 256)
+config.ANCHOR_SCALES = (16, 32, 64, 128, 256)
 config.ANCHOR_RATIOS = (0.5, 1, 2)
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)
 config.MASK_SIZE = 14
