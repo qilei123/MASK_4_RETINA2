@@ -190,6 +190,11 @@ elif experiment_name =='rop_dcn_v1':
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO/maskrcnn_dcn_v1'
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
     dataset.retina.NUM_CLASSES = 12
+elif experiment_name =='dr_baseline_ohem':   
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline_ohem'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+    dataset.retina.NUM_CLASSES = 11
+    config.TRAIN.BATCH_ROIS = -1
 
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
 
