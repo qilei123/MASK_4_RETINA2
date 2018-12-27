@@ -98,6 +98,12 @@ def train_net(args, ctx, pretrained, epoch, prefix, begin_epoch, end_epoch,
         arg_params['mask_pred2_bias'] = mx.nd.zeros(shape=arg_shape_dict['mask_pred2_bias'])
         arg_params['offset_weight'] = mx.nd.zeros(shape=arg_shape_dict['offset_weight'])
         arg_params['offset_bias'] = mx.nd.zeros(shape=arg_shape_dict['offset_bias'])
+        arg_params['stage4_unit2_conv2_offset_weight'] = mx.nd.zeros(shape=arg_shape_dict['stage4_unit2_conv2_offset_weight'])
+        arg_params['stage4_unit2_conv2_offset_bias'] = mx.nd.zeros(shape=arg_shape_dict['stage4_unit2_conv2_offset_bias'])
+        arg_params['stage4_unit3_conv2_offset_weight'] = mx.nd.zeros(shape=arg_shape_dict['stage4_unit3_conv2_offset_weight'])
+        arg_params['stage4_unit3_conv2_offset_bias'] = mx.nd.zeros(shape=arg_shape_dict['stage4_unit3_conv2_offset_bias'])
+        arg_params['stage4_unit4_conv2_offset_weight'] = mx.nd.zeros(shape=arg_shape_dict['stage4_unit4_conv2_offset_weight'])
+        arg_params['stage4_unit4_conv2_offset_bias'] = mx.nd.zeros(shape=arg_shape_dict['stage4_unit4_conv2_offset_bias'])
     # check parameter shapes
     for k in sym.list_arguments():
         if k in data_shape_dict:
