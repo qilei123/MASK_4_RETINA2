@@ -6,4 +6,4 @@ export PYTHONUNBUFFERED=1
 export MXNET_ENABLE_GPU_P2P=0
 export PYTHONPATH=${PYTHONPATH}:incubator-mxnet/python/
 #python maskrcnn_train_end2end.py --gpus 0 --resume --begin_epoch 20 --end_epoch 30
-python maskrcnn_test.py --gpu 0 --epoch 15 --vis
+python maskrcnn_test.py --gpu 0 --epoch 10
