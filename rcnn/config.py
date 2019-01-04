@@ -161,7 +161,7 @@ dataset.retina = edict()
 
 dataset.retina.dataset = 'retina'
 dataset.retina.image_set = 'train2014'
-dataset.retina.test_image_set = 'val2014'
+dataset.retina.test_image_set = 'train2014'
 dataset.retina.NUM_IMAGES_USING = -1
 config.DCN_V1 = False
 experiments = ['dr_baseline','rop_baseline','dr_dcn_v1','rop_dcn_v1','dr_baseline_ohem']
