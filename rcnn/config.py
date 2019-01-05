@@ -164,7 +164,7 @@ dataset.retina.image_set = 'train2014'
 dataset.retina.test_image_set = 'train2014'
 dataset.retina.NUM_IMAGES_USING = -1
 config.DCN_V1 = False
-experiments = ['dr_baseline','rop_baseline','dr_dcn_v1','rop_dcn_v1','dr_baseline_ohem']
+experiments = ['dr_baseline','rop_baseline','dr_dcn_v1','rop_dcn_v1','dr_baseline_ohem','dr_baseline_9','dr_dcn_v1_9']
 experiment_name = experiments[int(env_dist['EXP_ID'])]
 if experiment_name =='dr_baseline':   
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline'
@@ -195,7 +195,24 @@ elif experiment_name =='dr_baseline_ohem':
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
     dataset.retina.NUM_CLASSES = 11
     config.TRAIN.BATCH_ROIS = -1
-
+elif experiment_name =='dr_baseline_9':   
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline_9'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+    dataset.retina.NUM_CLASSES = 10
+    config.ANCHOR_SCALES = (4, 8, 16, 32, 64)
+    config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)  
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []  
+elif experiment_name =='dr_dcn_v1_9':
+    config.DCN_V1 = True
+    config.ANCHOR_SCALES = (4, 8, 16, 32, 64,128)
+    config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)
+    config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)    
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_dcn_v1_9'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+    dataset.retina.NUM_CLASSES = 10
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
 
 def generate_config(_network, _dataset):
