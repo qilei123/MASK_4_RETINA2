@@ -203,8 +203,8 @@ elif experiment_name =='dr_baseline_9':
     config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)  
     config.FIXED_PARAMS = []
     config.FIXED_PARAMS_SHARED = []
-    network.resnet.FIXED_PARAMS = ['conv0', 'stage1', 'gamma', 'beta']
-    network.resnet.FIXED_PARAMS_SHARED = ['conv0', 'stage1', 'stage2', 'stage3', 'gamma', 'beta']  
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []  
 elif experiment_name =='dr_dcn_v1_9':
     config.DCN_V1 = True
     config.ANCHOR_SCALES = (4, 8, 16, 32, 64,128)
