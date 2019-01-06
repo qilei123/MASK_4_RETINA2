@@ -161,7 +161,7 @@ dataset.retina = edict()
 
 dataset.retina.dataset = 'retina'
 dataset.retina.image_set = 'train2014'
-dataset.retina.test_image_set = 'train2014'
+dataset.retina.test_image_set = 'val2014'
 dataset.retina.NUM_IMAGES_USING = -1
 config.DCN_V1 = False
 experiments = ['dr_baseline','rop_baseline','dr_dcn_v1','rop_dcn_v1','dr_baseline_ohem','dr_baseline_9','dr_dcn_v1_9']
@@ -213,6 +213,7 @@ elif experiment_name =='dr_dcn_v1_9':
     dataset.retina.NUM_CLASSES = 10
     config.FIXED_PARAMS = []
     config.FIXED_PARAMS_SHARED = []
+config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
 
 def generate_config(_network, _dataset):

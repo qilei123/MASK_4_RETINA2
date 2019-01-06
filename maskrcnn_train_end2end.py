@@ -36,7 +36,7 @@ def train_net(args, ctx, pretrained, epoch, prefix, begin_epoch, end_epoch,
     # load dataset and prepare imdb for training
     image_sets = [iset for iset in args.image_set.split('+')]
     sdsdbs = [load_gt_sdsdb(args.dataset, image_set, args.root_path, args.dataset_path,
-                            mask_size=config.MASK_SIZE, binary_thresh=config.BINARY_THRESH) #, flip=not args.no_flip)
+                            mask_size=config.MASK_SIZE, binary_thresh=config.BINARY_THRESH, flip=not args.no_flip)
               for image_set in image_sets]
     sdsdb = merge_roidb(sdsdbs)
     sdsdb = filter_roidb(sdsdb)
