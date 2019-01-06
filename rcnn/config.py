@@ -202,7 +202,9 @@ elif experiment_name =='dr_baseline_9':
     config.ANCHOR_SCALES = (4, 8, 16, 32, 64)
     config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)  
     config.FIXED_PARAMS = []
-    config.FIXED_PARAMS_SHARED = []  
+    config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = ['conv0', 'stage1', 'gamma', 'beta']
+    network.resnet.FIXED_PARAMS_SHARED = ['conv0', 'stage1', 'stage2', 'stage3', 'gamma', 'beta']  
 elif experiment_name =='dr_dcn_v1_9':
     config.DCN_V1 = True
     config.ANCHOR_SCALES = (4, 8, 16, 32, 64,128)
@@ -213,6 +215,8 @@ elif experiment_name =='dr_dcn_v1_9':
     dataset.retina.NUM_CLASSES = 10
     config.FIXED_PARAMS = []
     config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
 
