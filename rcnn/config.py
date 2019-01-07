@@ -271,7 +271,22 @@ elif experiment_name =='rop_dcn_v1_10':
     network.resnet.FIXED_PARAMS = []
     network.resnet.FIXED_PARAMS_SHARED = []
     config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
-    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1     
+    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
+elif experiment_name =='dr_dcn_v1_9_11':
+    config.DCN_V1 = True
+    config.ANCHOR_SCALES = (2, 4, 8, 16, 32, 64,128)
+    config.ANCHOR_RATIOS = (0.125, 0.25, 0.5, 1, 2)
+    config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)    
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_dcn_v1_9_11'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
+    dataset.retina.NUM_CLASSES = 10
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []
+    config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
+    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
+    default.base_lr = 0.01     
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
 if not os.path.isdir(dataset.retina.root_path):
