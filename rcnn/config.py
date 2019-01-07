@@ -120,7 +120,7 @@ default.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
 default.frequent = 20
 default.kvstore = 'device'
 # default e2e
-default.e2e_prefix = 'model/e2e'
+#default.e2e_prefix = 'model/e2e'
 default.e2e_epoch = 25
 default.e2e_lr = default.base_lr
 default.e2e_lr_step = '12,18'
