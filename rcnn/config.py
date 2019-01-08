@@ -286,7 +286,7 @@ elif experiment_name =='dr_dcn_v1_9_11':
     network.resnet.FIXED_PARAMS_SHARED = []
     config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
     config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
-    default.base_lr = 0.01
+    default.base_lr = 0.005
     default.e2e_lr = default.base_lr     
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
