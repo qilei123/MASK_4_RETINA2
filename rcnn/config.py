@@ -247,6 +247,7 @@ elif experiment_name =='dr_dcn_v1_9_8':
     config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
     config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
     default.test_image_set = 'train2014'
+    dataset.retina.test_image_set = 'train2014'
 elif experiment_name == 'rop_baseline_9':
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO/maskrcnn_baseline_1'
     dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
