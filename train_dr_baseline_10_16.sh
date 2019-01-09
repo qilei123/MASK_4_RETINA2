@@ -1,6 +1,6 @@
 #!/bin/bash
 export EXP_ID=16
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/qileimail123/opencv32/install/lib:/usr/local/cuda/lib64
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/data0/qilei_chen/opencv33_install_66/lib:/usr/local/cuda-8.0/lib64
 export MXNET_CUDNN_AUTOTUNE_DEFAULT=0
 export PYTHONUNBUFFERED=1
 export MXNET_ENABLE_GPU_P2P=0
