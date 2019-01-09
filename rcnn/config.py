@@ -167,7 +167,9 @@ config.DCN_V1 = False
 experiments = ['dr_baseline','rop_baseline','dr_dcn_v1',
                 'rop_dcn_v1','dr_baseline_ohem','dr_baseline_9',
                 'dr_dcn_v1_9','dr_baseline_9_7','dr_dcn_v1_9_8',
-                'rop_baseline_9','rop_dcn_v1_10','dr_dcn_v1_9_11']
+                'rop_baseline_9','rop_dcn_v1_10','dr_dcn_v1_9_11',
+                'dr_baseline_1_12','dr_dcn_v1_1_13',
+                'dr_baseline_2_14','dr_dcn_v1_2_13']
 experiment_name = experiments[int(env_dist['EXP_ID'])]
 if experiment_name =='dr_baseline':   
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline'
@@ -289,7 +291,63 @@ elif experiment_name =='dr_dcn_v1_9_11':
     config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
     config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
     default.base_lr = 0.005
-    default.e2e_lr = default.base_lr     
+    default.e2e_lr = default.base_lr
+elif experiment_name == 'dr_baseline_1_12':
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO1/maskrcnn_baseline_1_12'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO1'
+    dataset.retina.NUM_CLASSES = 2
+    config.ANCHOR_SCALES = (4, 8, 16, 32, 64)
+    config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)  
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []      
+    config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
+    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
+elif experiment_name =='dr_dcn_v1_1_13':
+    config.DCN_V1 = True
+    config.ANCHOR_SCALES = (2, 4, 8, 16, 32, 64,128)
+    config.ANCHOR_RATIOS = (0.125, 0.25, 0.5, 1, 2)
+    config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)    
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO1/maskrcnn_dcn_v1_1_13'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO1'
+    dataset.retina.NUM_CLASSES = 2
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []
+    config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
+    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
+    default.test_image_set = 'val2014'
+    dataset.retina.test_image_set = 'val2014'
+elif experiment_name == 'dr_baseline_2_14':
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO2/maskrcnn_baseline_1_14'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO2'
+    dataset.retina.NUM_CLASSES = 2
+    config.ANCHOR_SCALES = (4, 8, 16, 32, 64)
+    config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)  
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []      
+    config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
+    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
+elif experiment_name =='dr_dcn_v1_2_15':
+    config.DCN_V1 = True
+    config.ANCHOR_SCALES = (2, 4, 8, 16, 32, 64,128)
+    config.ANCHOR_RATIOS = (0.125, 0.25, 0.5, 1, 2)
+    config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)    
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO2/maskrcnn_dcn_v1_1_15'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO2'
+    dataset.retina.NUM_CLASSES = 2
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []
+    config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
+    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
+    default.test_image_set = 'val2014'
+    dataset.retina.test_image_set = 'val2014'     
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
 if not os.path.isdir(dataset.retina.root_path):
