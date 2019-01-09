@@ -64,7 +64,7 @@ config.TRAIN.CXX_PROPOSAL = True
 config.TRAIN.RPN_NMS_THRESH = 0.7
 config.TRAIN.RPN_PRE_NMS_TOP_N = 12000
 config.TRAIN.RPN_POST_NMS_TOP_N = 2000
-config.TRAIN.RPN_MIN_SIZE = config.RPN_FEAT_STRIDE
+
 # whether select from all rois or bg rois
 config.TRAIN.GAP_SELECT_FROM_ALL = True
 config.TRAIN.IGNORE_GAP = False
@@ -86,13 +86,13 @@ config.TEST.CXX_PROPOSAL = True
 config.TEST.RPN_NMS_THRESH = 0.7
 config.TEST.RPN_PRE_NMS_TOP_N = 6000
 config.TEST.RPN_POST_NMS_TOP_N = 300
-config.TEST.RPN_MIN_SIZE = config.RPN_FEAT_STRIDE
+
 
 # RPN generate proposal
 config.TEST.PROPOSAL_NMS_THRESH = 0.7
 config.TEST.PROPOSAL_PRE_NMS_TOP_N = 20000
 config.TEST.PROPOSAL_POST_NMS_TOP_N = 2000
-config.TEST.PROPOSAL_MIN_SIZE = config.RPN_FEAT_STRIDE
+
 
 # RCNN nms
 config.TEST.NMS = 0.3
@@ -347,9 +347,48 @@ elif experiment_name =='dr_dcn_v1_2_15':
     config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
     config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
     default.test_image_set = 'val2014'
-    dataset.retina.test_image_set = 'val2014'     
+    dataset.retina.test_image_set = 'val2014'
+elif experiment_name == 'dr_baseline_10_16':
+    dataset.retina.root_path = '/data0/qilei_chen/AI_EYE/BostonAI4DB1/maskrcnn_baseline_10_16'
+    dataset.retina.dataset_path = '/data0/qilei_chen/AI_EYE/BostonAI4DB1'
+    dataset.retina.NUM_CLASSES = 11
+    config.ANCHOR_SCALES = (4, 8, 16, 32, 64)
+    config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)  
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []      
+    config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
+    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
+    network.resnet.RPN_FEAT_STRIDE = 4
+    network.resnet.RCNN_FEAT_STRIDE = 4
+elif experiment_name =='dr_dcn_v1_10_17':
+    config.DCN_V1 = True
+    config.ANCHOR_SCALES = (2, 4, 8, 16, 32, 64,128)
+    config.ANCHOR_RATIOS = (0.125, 0.25, 0.5, 1, 2)
+    config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)    
+    dataset.retina.root_path = '/data0/qilei_chen/AI_EYE/BostonAI4DB1/maskrcnn_dcn_v1_10_17'
+    dataset.retina.dataset_path = '/data0/qilei_chen/AI_EYE/BostonAI4DB1'
+    dataset.retina.NUM_CLASSES = 11
+    config.FIXED_PARAMS = []
+    config.FIXED_PARAMS_SHARED = []
+    network.resnet.FIXED_PARAMS = []
+    network.resnet.FIXED_PARAMS_SHARED = []
+    config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
+    config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
+    default.test_image_set = 'train2014'
+    dataset.retina.test_image_set = 'train2014'
+    network.resnet.RPN_FEAT_STRIDE = 4
+    network.resnet.RCNN_FEAT_STRIDE = 4
+
+     
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
+
+config.TRAIN.RPN_MIN_SIZE = config.RPN_FEAT_STRIDE
+config.TEST.RPN_MIN_SIZE = config.RPN_FEAT_STRIDE
+config.TEST.PROPOSAL_MIN_SIZE = config.RPN_FEAT_STRIDE
+
 if not os.path.isdir(dataset.retina.root_path):
     os.makedirs(dataset.retina.root_path)
 def generate_config(_network, _dataset):
