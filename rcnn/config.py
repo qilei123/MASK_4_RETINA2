@@ -379,7 +379,7 @@ elif experiment_name =='dr_dcn_v1_10_17':
     config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
     default.test_image_set = 'train2014'
     dataset.retina.test_image_set = 'train2014'
-    network.resnet.RPN_FEAT_STRIDE = 8
+    network.resnet.RPN_FEAT_STRIDE = 16
     network.resnet.RCNN_FEAT_STRIDE = 4
 
 
