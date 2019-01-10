@@ -361,7 +361,7 @@ elif experiment_name == 'dr_baseline_10_16':
     network.resnet.FIXED_PARAMS_SHARED = []      
     config.TRAIN.RPN_POSITIVE_OVERLAP = 0.5
     config.TRAIN.RPN_NEGATIVE_OVERLAP = 0.1
-    network.resnet.RPN_FEAT_STRIDE = 8
+    network.resnet.RPN_FEAT_STRIDE = 16
     network.resnet.RCNN_FEAT_STRIDE = 4
 elif experiment_name =='dr_dcn_v1_10_17':
     config.DCN_V1 = True
