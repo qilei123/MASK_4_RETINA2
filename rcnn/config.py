@@ -170,7 +170,7 @@ experiments = ['dr_baseline','rop_baseline','dr_dcn_v1',
                 'rop_baseline_9','rop_dcn_v1_10','dr_dcn_v1_9_11',
                 'dr_baseline_1_12','dr_dcn_v1_1_13',
                 'dr_baseline_2_14','dr_dcn_v1_2_15',
-                'maskrcnn_baseline_10_16','dr_dcn_v1_10_17']
+                'dr_baseline_10_16','dr_dcn_v1_10_17']
 experiment_name = experiments[int(env_dist['EXP_ID'])]
 if experiment_name =='dr_baseline':   
     dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO/maskrcnn_baseline'
