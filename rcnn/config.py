@@ -382,13 +382,15 @@ elif experiment_name =='dr_dcn_v1_10_17':
     network.resnet.RPN_FEAT_STRIDE = 4
     network.resnet.RCNN_FEAT_STRIDE = 4
 
-     
-config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
-default.e2e_prefix = dataset.retina.root_path+'/e2e'
 
 config.TRAIN.RPN_MIN_SIZE = config.RPN_FEAT_STRIDE
 config.TEST.RPN_MIN_SIZE = config.RPN_FEAT_STRIDE
 config.TEST.PROPOSAL_MIN_SIZE = config.RPN_FEAT_STRIDE
+     
+config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
+default.e2e_prefix = dataset.retina.root_path+'/e2e'
+
+
 
 if not os.path.isdir(dataset.retina.root_path):
     os.makedirs(dataset.retina.root_path)
