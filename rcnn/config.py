@@ -383,9 +383,9 @@ elif experiment_name =='dr_dcn_v1_10_17':
     network.resnet.RCNN_FEAT_STRIDE = 4
 
 
-config.TRAIN.RPN_MIN_SIZE = config.RPN_FEAT_STRIDE
-config.TEST.RPN_MIN_SIZE = config.RPN_FEAT_STRIDE
-config.TEST.PROPOSAL_MIN_SIZE = config.RPN_FEAT_STRIDE
+config.TRAIN.RPN_MIN_SIZE = network.resnet.RPN_FEAT_STRIDE
+config.TEST.RPN_MIN_SIZE = network.resnet.RPN_FEAT_STRIDE
+config.TEST.PROPOSAL_MIN_SIZE = network.resnet.RPN_FEAT_STRIDE
      
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS) 
 default.e2e_prefix = dataset.retina.root_path+'/e2e'
