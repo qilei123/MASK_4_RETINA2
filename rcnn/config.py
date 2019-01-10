@@ -350,8 +350,8 @@ elif experiment_name =='dr_dcn_v1_2_15':
     default.test_image_set = 'val2014'
     dataset.retina.test_image_set = 'val2014'
 elif experiment_name == 'dr_baseline_10_16':
-    dataset.retina.root_path = '/data0/qilei_chen/AI_EYE/BostonAI4DB1/maskrcnn_baseline_10_16'
-    dataset.retina.dataset_path = '/data0/qilei_chen/AI_EYE/BostonAI4DB1'
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO3/maskrcnn_baseline_10_16'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO3'
     dataset.retina.NUM_CLASSES = 11
     config.ANCHOR_SCALES = (4, 8, 16, 32, 64)
     config.ANCHOR_RATIOS = (0.25, 0.5, 1, 2)  
@@ -368,8 +368,8 @@ elif experiment_name =='dr_dcn_v1_10_17':
     config.ANCHOR_SCALES = (2, 4, 8, 16, 32, 64,128)
     config.ANCHOR_RATIOS = (0.125, 0.25, 0.5, 1, 2)
     config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)    
-    dataset.retina.root_path = '/data0/qilei_chen/AI_EYE/BostonAI4DB1/maskrcnn_dcn_v1_10_17'
-    dataset.retina.dataset_path = '/data0/qilei_chen/AI_EYE/BostonAI4DB1'
+    dataset.retina.root_path = '/home/qileimail123/data0/RetinaImg/DR_COCO3/maskrcnn_dcn_v1_10_17'
+    dataset.retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO3'
     dataset.retina.NUM_CLASSES = 11
     config.FIXED_PARAMS = []
     config.FIXED_PARAMS_SHARED = []
